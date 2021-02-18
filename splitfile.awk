@@ -1,5 +1,5 @@
 BEGIN {
-  shard_max_size = 1024 * 1024 * 20; # 20 Mb
+  shard_max_size = 1024 * 1024 * 5; # ~5Mb
   shard_size = 0;
   shard_nr = 0;
 } 
@@ -16,6 +16,7 @@ BEGIN {
     shard_nr++;
     shard_size = line_size;
     mkdir(shard_nr);
+    to_file(header, shard_nr);
   }
   to_file($0, shard_nr);
 }
